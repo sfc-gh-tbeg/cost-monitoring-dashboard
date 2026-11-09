@@ -1,0 +1,33 @@
+definition_version: "2"
+
+# ── Customer configuration ──────────────────────────────────
+# Update these three values before deploying:
+#   database / schema  → where the APPLICATION SERVICE will live
+#   query_warehouse    → warehouse for the app to run queries
+#   code_workspace     → artifact repo (auto-created on first deploy)
+# ─────────────────────────────────────────────────────────────
+
+entities:
+  COST_MONITORING_DASHBOARD:
+    type: snowflake-app
+    identifier:
+      name: COST_MONITORING_DASHBOARD
+      # Change to the customer's personal DB or a shared DB
+      database: USER$TBEG
+      schema: PUBLIC
+    artifacts:
+      - src: ./*
+        dest: ./
+        ignore:
+          - node_modules
+          - .env*
+          - __pycache__
+          - "*.pyc"
+          - .next
+          - .git
+          - snowflake.log
+          - setup.sql
+          - teardown.sql
+
+    query_warehouse: COST_DASHBOARD_WH
+    code_workspace: USER$TBEG.PUBLIC.SNOWFLAKE_APPS

@@ -1,0 +1,23 @@
+# created-by: snowflake-apps-create; template=nextjs-template; skill-version=1.0.0
+runtime: node
+
+install:
+  commands:
+    - ["npm", "ci", "--include=dev"]
+
+build:
+  commands:
+    - ["npm", "run", "build"]
+    # For standalone mode
+    - ["cp", "-r", ".next/static", ".next/standalone/.next/static"]
+    - ["cp", "-r", "public", ".next/standalone/public"]
+    # Avoid packaging extra node_modules since standalone includes its own
+    - ["rm", "-rf", "node_modules"]
+
+run:
+  command: ["node", ".next/standalone/server.js"]
+
+profile:
+  label: "Cost Monitoring & AI Usage Dashboard"
+  description: "Snowflake cost monitoring and Cortex Code usage analytics dashboard"
+  icon: "public/icon.svg"
