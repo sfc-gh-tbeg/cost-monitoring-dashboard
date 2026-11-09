@@ -214,8 +214,8 @@ LANGUAGE SQL
 EXECUTE AS OWNER
 AS
 BEGIN
-  LET :cutoff DATE := DATEADD(day, -90, CURRENT_DATE());
-  LET :lookback DATE := DATEADD(day, -2, CURRENT_DATE());
+  LET cutoff DATE := DATEADD(day, -90, CURRENT_DATE());
+  LET lookback DATE := DATEADD(day, -2, CURRENT_DATE());
 
   -- ── Cost Monitor tables: incremental ─────────────────────
 
